@@ -30,8 +30,8 @@ function touching(rad, circ1, circ2) {
 }
 
 var mouseDown = false;
-document.body.onmousedown = () => mouseDown = true;
-document.body.onmouseup = () => mouseDown = false;
+document.body.onpointerdown = () => mouseDown = true;
+document.body.onpointerup = () => mouseDown = false;
 
 var keyMap = [];
 
