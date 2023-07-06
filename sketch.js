@@ -202,12 +202,12 @@ function draw() {
   for (const enemy of game.enemies)
     if (touching(rad, game.player, enemy)) {
 	  if (game.started)
-		alert(`You got ${game.score} points!`);
+		alert(`You got ${game.score} points!`); 
       game = defaultGame();
     }
 }
 
-function mouseClicked() {
+function mouseReleased() {
   game.started = true;
   game.player.speed = -game.player.speed;
 }
