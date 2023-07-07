@@ -225,6 +225,9 @@ function mouseReleased() {
 function keyReleased() {
   if (mouseDown)
     return;
-  if (keyCode == 32)
-    game.player.speed = -game.player.speed;
+  if (keyCode != 32)
+    return;
+
+  game.player.speed = -game.player.speed;
+  keyCode = 0;
 }
