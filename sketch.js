@@ -109,6 +109,7 @@ let highscore = 0;
 let highRes = getCookie("highscore");
 if (highRes != undefined)
   highscore = Number(highRes);
+let lastScore = 0;
 let game = defaultGame();
 
 function draw() {
@@ -167,9 +168,13 @@ function draw() {
     textSize(60);
     text(String(game.score), 0, 0);
     
-    // Highscore
     textSize(30);
+
+    // Highscore
     text(String(highscore), 0, -50);
+
+    // Highscore
+    text(String(lastScore), 0, 50);
   }
   pop();
   
@@ -184,7 +189,7 @@ function draw() {
   
   if (touching(rad, game.player, game.goal)) {
     game.score++;
-    if (game.score > highscore) {
+    if (game.score > highscore && game.started) {
       highscore = game.score;
       setCookie("highscore", highscore, 365);
     }
@@ -201,8 +206,8 @@ function draw() {
   
   for (const enemy of game.enemies)
     if (touching(rad, game.player, enemy)) {
-	  if (game.started)
-		alert(`You got ${game.score} points!`); 
+      if (game.started)
+        lastScore = game.score;
       game = defaultGame();
     }
 }
