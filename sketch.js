@@ -217,10 +217,14 @@ function mousePressed() {
 }
 
 function mouseReleased() {
+  if (keyCode == 32)
+    return;
   game.player.speed = -game.player.speed;
 }
 
 function keyReleased() {
+  if (mouseDown)
+    return;
   if (keyCode == 32)
     game.player.speed = -game.player.speed;
 }
