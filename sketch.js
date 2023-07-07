@@ -79,7 +79,7 @@ class GameObject {
       noStroke();
       fill(this.col);
 
-      rotate(this.rot);
+      rotate(this.rot + this.speed);
       this.rot += this.speed;
       this.rot %= PI * 2;
 
