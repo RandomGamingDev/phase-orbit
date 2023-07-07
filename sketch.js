@@ -212,7 +212,15 @@ function draw() {
     }
 }
 
-function mouseReleased() {
+function mousePressed() {
   game.started = true;
+}
+
+function mouseReleased() {
   game.player.speed = -game.player.speed;
+}
+
+function keyReleased() {
+  if (keyCode == 32)
+    game.player.speed = -game.player.speed;
 }
