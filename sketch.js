@@ -50,6 +50,7 @@ window.addEventListener('keyup', (x)=>{
 });
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+const toDeltaTime = () => (1000 / 60) / (deltaTime == 0 ? 10 : deltaTime);
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
@@ -57,7 +58,6 @@ function windowResized() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(60);
   smooth();
   pixelDensity(1);
   angleMode(RADIANS);
@@ -79,8 +79,9 @@ class GameObject {
       noStroke();
       fill(this.col);
 
-      rotate(this.rot + this.speed);
-      this.rot += this.speed;
+      const toAdd = this.speed * toDeltaTime();
+      rotate(this.rot + toAdd);
+      this.rot += toAdd;
       this.rot %= PI * 2;
 
       translate(rad, 0);
@@ -123,13 +124,13 @@ function draw() {
   const inTan = (mouseDown || keyCodePressed(32));
   if (inTan) {
     if (game.stamina > 0)
-      game.stamina += game.staminaL;
+      game.stamina += game.staminaL * toDeltaTime();
     else
       game.stamina = 0;
   }
   else {
     if (game.stamina < game.maxStamina)
-      game.stamina += game.staminaG;
+      game.stamina += game.staminaG * toDeltaTime();
   }
   game.stamina = clamp(game.stamina, 0, 1);
   
