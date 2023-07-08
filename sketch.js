@@ -50,7 +50,7 @@ window.addEventListener('keyup', (x)=>{
 });
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-const toDeltaTime = () => (1000 / 60) / (deltaTime == 0 ? 10 : deltaTime);
+const toDeltaTime = () => (deltaTime == 0 ? 10 : deltaTime) / (1000 / 60);
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
