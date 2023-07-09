@@ -56,6 +56,13 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
+let coinSound;
+let hitSound;
+function preload() {
+  coinSound = loadSound("assets/audio/effects/coin.ogg");
+  hitSound = loadSound("assets/audio/effects/hit.wav");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   smooth();
@@ -190,15 +197,18 @@ function draw() {
   
   if (touching(rad, game.player, game.goal)) {
     game.score++;
-    if (game.score > highscore && game.started) {
-      highscore = game.score;
-      setCookie("highscore", highscore, 365);
+    if (game.started) {
+      coinSound.play();
+      if (game.score > highscore) {
+        highscore = game.score;
+        setCookie("highscore", highscore, 365);
+      }
     }
-    
     if (game.score % 10 == 0)
       game.enemies.push(
         new GameObject(game.enemies[game.enemies.length - 1].rot, 0.1, ((Math.random() < 0.5) ? -1 : 1) * 0.02, "#ff0000")
       );
+    game.staminaG += game.staminaG * 0.01;
     game.player.speed += game.player.speed * 0.05;
     for (const enemy of game.enemies)
       enemy.speed += enemy.speed * 0.05;
@@ -207,8 +217,10 @@ function draw() {
   
   for (const enemy of game.enemies)
     if (touching(rad, game.player, enemy)) {
-      if (game.started)
+      if (game.started) {
+        hitSound.play();
         lastScore = game.score;
+      }
       game = defaultGame();
     }
 }
