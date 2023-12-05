@@ -229,6 +229,12 @@ function mousePressed() {
   game.started = true;
 }
 
+function keyPressed() {
+  if (keyCode != 32)
+    return;
+  game.started = true;
+}
+
 function mouseReleased() {
   if (keyCode == 32)
     return;
