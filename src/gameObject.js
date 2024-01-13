@@ -13,10 +13,12 @@ class GameObject {
       noStroke();
       fill(this.col);
 
-      const toAdd = this.speed * toDeltaTime();
-      rotate(this.rot + toAdd);
-      this.rot += toAdd;
-      this.rot %= PI * 2;
+      if (game.started) {
+        const toAdd = this.speed * toDeltaTime();
+        this.rot += toAdd;
+        this.rot %= PI * 2;
+      }
+      rotate(this.rot);
 
       translate(rad, 0);
 

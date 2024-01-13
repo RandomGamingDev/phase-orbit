@@ -14,6 +14,8 @@ function setup() {
   colorMode(RGB, 1);
 }
 
+let first_time = true;
+
 function draw() {
   translate(width / 2, height / 2);
   
@@ -23,7 +25,6 @@ function draw() {
   const diam = rad * 2;
   
   const inTan = (mouseDown || keyCodePressed(32));
-  //console.log(keyMap);
   if (inTan) {
     if (game.stamina > 0)
       game.stamina += game.staminaL * toDeltaTime();
@@ -76,7 +77,7 @@ function draw() {
     // Highscore
     text(String(highscore), 0, -50);
 
-    // Highscore
+    // Lastscore
     text(String(lastScore), 0, 50);
   }
   pop();
@@ -90,6 +91,7 @@ function draw() {
   if (inTan && game.stamina > 0)
     return;
   
+  // If the player collides with the coin
   if (touching(rad, game.player, game.goal)) {
     game.score++;
     if (game.started) {
@@ -110,6 +112,7 @@ function draw() {
     game.goal.rot = Math.random() * PI * 2;
   }
   
+  // If the player collides with an enemy
   for (const enemy of game.enemies)
     if (touching(rad, game.player, enemy)) {
       if (game.started) {
