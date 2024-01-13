@@ -8,9 +8,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(windowWidth, windowHeight);
   smooth();
-  pixelDensity(1);
   angleMode(RADIANS);
   colorMode(RGB, 1);
 }
@@ -19,11 +18,12 @@ function draw() {
   translate(width / 2, height / 2);
   
   background(0);
-  
+
   const rad = (windowWidth < windowHeight ? windowWidth : windowHeight) * 0.8 / 2;
   const diam = rad * 2;
   
   const inTan = (mouseDown || keyCodePressed(32));
+  //console.log(keyMap);
   if (inTan) {
     if (game.stamina > 0)
       game.stamina += game.staminaL * toDeltaTime();
