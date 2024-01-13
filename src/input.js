@@ -12,6 +12,7 @@ function keyPressed() {
   if (keyCode != 32)
     return;
   game.started = true;
+  first_time = false;
 }
 
 function keyReleased() {
@@ -29,6 +30,7 @@ function keyReleased() {
 
 function mousePressed() {
   game.started = true;
+  first_time = false;
 }
 
 let last_touch = Date.now();

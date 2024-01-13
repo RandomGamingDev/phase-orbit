@@ -121,4 +121,21 @@ function draw() {
       }
       game = defaultGame();
     }
+  
+  if (first_time) {
+    push();
+    {
+      fill(0, 0, 0, 0.75);
+      rect(-width / 2, -height / 2, width, height);
+    }
+    pop();
+    push();
+    {
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      fill(255);
+      text("Tap to Start & Hold to Phase\nand prepare for a surprise at level 10\nYou won't survive for very long :)", 0, 0);
+    }
+    pop();
+  }
 }
