@@ -33,16 +33,9 @@ function mousePressed() {
   first_time = false;
 }
 
-let last_touch = Date.now();
-
 function mouseReleased() {
   if (keyCode == 32)
     return;
-
-  const current_touch = Date.now();
-  if (current_touch - last_touch < 100)
-    return;
-  last_touch = current_touch;
 
   game.player.speed = -game.player.speed;
 }
