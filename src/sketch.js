@@ -3,8 +3,8 @@ function windowResized() {
 }
 
 function preload() {
-  coinSound = loadSound("assets/audio/effects/coin.ogg");
-  hitSound = loadSound("assets/audio/effects/hit.wav");
+  coinSound = new Audio("assets/audio/effects/coin.ogg");
+  hitSound = new Audio("assets/audio/effects/hit.wav");
 }
 
 function setup() {
