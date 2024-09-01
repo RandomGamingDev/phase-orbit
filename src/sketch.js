@@ -69,16 +69,16 @@ function draw() {
     textAlign(CENTER, CENTER);
     
     // Number of points
-    textSize(60);
+    textSize(rad * 0.4);
     text(String(game.score), 0, 0);
     
-    textSize(30);
+    textSize(rad * 0.2);
 
     // Highscore
-    text(String(highscore), 0, -50);
+    text(String(highscore), 0, rad * -0.35);
 
     // Lastscore
-    text(String(lastScore), 0, 50);
+    text(String(lastScore), 0, rad * 0.35);
   }
   pop();
   
